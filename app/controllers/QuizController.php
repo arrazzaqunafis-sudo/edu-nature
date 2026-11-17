@@ -33,8 +33,10 @@ class QuizController extends Controller {
         }
 
         $total = count($detail);
-        $name  = trim($input['name'] ?? '') ?: 'Pengunjung';
-        $this->model('QuizResult')->create($name, $score, $total);
+        $name = trim($input['name'] ?? '') ?: (is_logged_in() ? $_SESSION['user']['name'] : 'Pengunjung');
+        $userId = is_logged_in() ? (int)$_SESSION['user']['id'] : null;
+
+        $this->model('QuizResult')->create($name, $score, $total, $userId);
 
         $this->json(['score' => $score, 'total' => $total, 'detail' => $detail]);
     }

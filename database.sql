@@ -48,9 +48,11 @@ CREATE TABLE questions (
 CREATE TABLE quiz_results (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
+  user_id INT NULL,
   score INT NOT NULL,
   total INT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 -- ============ SEED DATA ============
@@ -69,7 +71,7 @@ INSERT INTO articles (title, slug, category, excerpt, content, image) VALUES
  'https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=1200&q=80'),
 ('Siklus Air: Perjalanan Setetes Air yang Menopang Kehidupan', 'siklus-air-perjalanan-setetes-air', 'Ekosistem',
  'Air terus bergerak dalam siklus abadi. Memahami siklus ini membantu kita menghargai setiap tetesnya.',
- '<p>Siklus air terdiri dari evaporasi, kondensasi, presipitasi, dan infiltrasi. Matahari menguapkan air dari laut dan daratan, uap itu naik dan mengembun menjadi awan, lalu turun sebagai hujan.</p><p>Hutan berperan penting menjaga siklus ini. Ketika hutan rusak, siklus air terganggu dan menyebabkan banjir maupun kekeringan.</p>',
+ '<p>Siklus air terdiri dari evaporasi, kondensasi, presipitasi, dan infiltrasi. Matahari menguapkan water dari laut dan daratan, uap itu naik dan mengembun menjadi awan, lalu turun sebagai hujan.</p><p>Hutan berperan penting menjaga siklus ini. Ketika hutan rusak, siklus air terganggu dan menyebabkan banjir maupun kekeringan.</p>',
  'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1200&q=80'),
 ('Mangrove: Benteng Alami yang Menjaga Pesisir', 'mangrove-benteng-alami-pesisir', 'Ekosistem',
  'Hutan mangrove melindungi pantai dari abrasi dan menjadi rumah bagi biota laut.',

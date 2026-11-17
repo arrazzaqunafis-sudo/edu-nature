@@ -24,10 +24,15 @@
       <a href="<?= url('articles') ?>" class="<?= $active==='articles'?'active':'' ?>">Artikel</a>
       <a href="<?= url('gallery') ?>" class="<?= $active==='gallery'?'active':'' ?>">Galeri</a>
       <a href="<?= url('quiz') ?>" class="<?= $active==='quiz'?'active':'' ?>">Kuis</a>
+
       <?php if (is_admin()): ?>
         <a href="<?= url('admin') ?>" class="btn btn-sm btn-dark">Dashboard</a>
+      <?php elseif (is_logged_in()): ?>
+        <span class="user-chip">👋 <?= e($_SESSION['user']['name']) ?></span>
+        <a href="<?= url('auth/logout') ?>" class="btn btn-sm btn-outline">Keluar</a>
       <?php else: ?>
         <a href="<?= url('auth/login') ?>" class="btn btn-sm btn-outline">Masuk</a>
+        <a href="<?= url('auth/register') ?>" class="btn btn-sm btn-dark">Daftar</a>
       <?php endif; ?>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>

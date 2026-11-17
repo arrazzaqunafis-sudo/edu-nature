@@ -34,6 +34,14 @@ function is_admin() {
     return isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin';
 }
 
+function is_user() {
+    return isset($_SESSION['user']) && $_SESSION['user']['role'] === 'user';
+}
+
+function is_logged_in() {
+    return isset($_SESSION['user']) && !empty($_SESSION['user']['id']);
+}
+
 function excerpt($text, $len = 130) {
     $text = strip_tags($text);
     return mb_strlen($text) > $len ? mb_substr($text, 0, $len) . '…' : $text;
